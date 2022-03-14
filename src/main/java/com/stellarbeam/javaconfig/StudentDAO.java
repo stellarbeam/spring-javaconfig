@@ -2,7 +2,9 @@ package com.stellarbeam.javaconfig;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 import com.mysql.cj.jdbc.Driver;
 
@@ -34,13 +36,30 @@ public class StudentDAO {
     public void selectAllRows() {
 
         // This is a `try-with-resources` statement.
-        // The resourse used must be [AutoClosable], and the resource is auto-closed
+        // The resourses used must be [AutoClosable], and the resources are auto-closed
         // after the `try` statement completes, whether normally or otherwise.
-        try (Connection connection = getConnection()) {
+        // The resources declared become read-only.
+        try (
+            Connection connection = getConnection(); 
+            Statement statement = connection.createStatement()
+        ) {
             System.out.println("JDBC: Connection established and closed successfully");
-            // TODO: Fetch all rows
+
+            ResultSet resultSet = statement.executeQuery("SELECT * FROM StudentInfo");
+
+            while(resultSet.next()) {
+                int studentId = resultSet.getInt(1);
+                String lastName = resultSet.getString(2);
+                String firstName = resultSet.getString(3);
+                String address = resultSet.getString(4);
+                String city = resultSet.getString(5);
+
+                System.out.println("StudentID: " + studentId + " | LastName: " + lastName + 
+                    " | FirstName: " + firstName + " | Address: " + address + " | City: " + city);
+            }
+            
         } catch (SQLException e) {
-            System.out.println("Error connecting to database");
+            System.out.println("JDBC: Error connecting to database");
         }
 
         // With the simple `try` statement, we would need the `finally` clause:

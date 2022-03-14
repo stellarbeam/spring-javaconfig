@@ -13,5 +13,8 @@ public class Student {
     public void test() {
         System.out.println("Hi, I'm a student");
         System.out.println("I have a book: " + book);
+
+        StudentDAO studentDAO = new StudentDAO();
+        studentDAO.selectAllRows();
     }
 }

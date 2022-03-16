@@ -19,6 +19,8 @@ public class AppConfig {
     // "student" and "student2" are aliases for same object (one instance).
     // The [name] attribute overrides te default bean name, which is the
     // method's name ("studentBean" in this case).
+    // Default bean scope is singleton and init mode is eager. Use @Scope 
+    // annotation to change scope, and @Lazy for lazy init.
     @Bean(name = {"student", "student2"})
     public Student studentBean() {
 
@@ -35,6 +37,10 @@ public class AppConfig {
         String url = "jdbc:mysql://127.0.0.1:3306/students";
         String user = "test";
         String password = "test";
+
+        // Since the bean scope is singleton, this object is same as that
+        // injected into student bean
+        System.out.println(bookBean());
 
         return new StudentDAO(url, user, password);
     }

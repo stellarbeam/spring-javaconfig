@@ -29,4 +29,13 @@ public class AppConfig {
         // reference variable first, the method is still called only once. 
         return new Student(bookBean());
     }
+
+    @Bean(name = "studentDAO")
+    public StudentDAO studentDAOBean() {
+        String url = "jdbc:mysql://127.0.0.1:3306/students";
+        String user = "test";
+        String password = "test";
+
+        return new StudentDAO(url, user, password);
+    }
 }

@@ -14,9 +14,10 @@ public class Student {
         System.out.println("Hi, I'm a student");
         System.out.println("I have a book: " + book);
 
-        StudentDAO studentDAO = new StudentDAO();
-        studentDAO.selectAllRows();
-        studentDAO.deleteRow(2);
-        studentDAO.selectAllRows();
+        // Moving this code to main method of App for the time being
+        // StudentDAO studentDAO = new StudentDAO();
+        // studentDAO.selectAllRows();
+        // studentDAO.deleteRow(2);
+        // studentDAO.selectAllRows();
     }
 }

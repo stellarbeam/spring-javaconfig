@@ -15,9 +15,15 @@ public class StudentDAO {
     // => New class
     // private String driverClass = "com.mysql.cj.jdbc.Driver";
 
-    private String url = "jdbc:mysql://127.0.0.1:3306/students";
-    private String user = "test";
-    private String password = "test";
+    private String url;
+    private String user;
+    private String password;
+    
+    public StudentDAO(String url, String user, String password) {
+        this.url = url;
+        this.user = user;
+        this.password = password;
+    }
 
     private Connection getConnection() throws SQLException {
 

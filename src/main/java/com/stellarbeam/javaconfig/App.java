@@ -15,6 +15,11 @@ public class App {
         Book book = context.getBean("bookBean", Book.class);
         System.out.println("Book bean is: " + book);
 
+        StudentDAO studentDAO = context.getBean("studentDAO", StudentDAO.class);
+        studentDAO.selectAllRows();
+        studentDAO.deleteRow(2);
+        studentDAO.selectAllRows();
+
         context.close();
     }
 }

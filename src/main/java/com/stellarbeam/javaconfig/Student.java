@@ -11,8 +11,7 @@ public class Student {
     }
 
     public void test() {
-        System.out.println("Hi, I'm a student");
-        System.out.println("I have a book: " + book);
+        System.out.println("Student: I have a book " + book);
 
         // Moving this code to main method of App for the time being
         // StudentDAO studentDAO = new StudentDAO();

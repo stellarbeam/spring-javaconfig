@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
+
 import com.mysql.cj.jdbc.Driver;
 
 public class StudentDAO {
@@ -18,14 +21,32 @@ public class StudentDAO {
     private String url;
     private String user;
     private String password;
-    
+
+    private Connection connection;
+
     public StudentDAO(String url, String user, String password) {
         this.url = url;
         this.user = user;
         this.password = password;
     }
 
-    private Connection getConnection() throws SQLException {
+    // This method will be automatically called by Spring after bean is 
+    // constructed and dependencies are injected
+    @PostConstruct
+    public void init() throws SQLException {
+        System.out.println("PostContruct method called");
+        createConnection();
+    }
+
+    // This method will be automatically called by Spring before bean is
+    // destroyed
+    @PreDestroy
+    public void destroy() throws SQLException {
+        System.out.println("PreDestroy method called");
+        closeConnection();
+    }
+
+    private void createConnection() throws SQLException {
 
         // For older JDK versions, we had to manually load driver class
         // It then gets automatically registered with driver manager
@@ -36,7 +57,11 @@ public class StudentDAO {
         Driver driver = new Driver();
         DriverManager.registerDriver(driver);
 
-        return DriverManager.getConnection(url, user, password);
+        connection = DriverManager.getConnection(url, user, password);
+    }
+
+    private void closeConnection() throws SQLException {
+        connection.close();
     }
 
     public void selectAllRows() {
@@ -46,7 +71,6 @@ public class StudentDAO {
         // after the `try` statement completes, whether normally or otherwise.
         // The resources declared become read-only.
         try (
-            Connection connection = getConnection(); 
             Statement statement = connection.createStatement()
         ) {
             System.out.println("JDBC: Connection established successfully");
@@ -79,7 +103,6 @@ public class StudentDAO {
     public void deleteRow(int studentId) {
 
         try (
-            Connection connection = getConnection(); 
             Statement statement = connection.createStatement()
         ) {
             System.out.println("JDBC: Connection established successfully");

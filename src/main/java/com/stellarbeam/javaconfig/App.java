@@ -21,5 +21,9 @@ public class App {
         studentDAO.selectAllRows();
 
         context.close();
+
+        // Closes context on JVM shutdown, unless already closed
+        // Can be used instead of .close()
+        // context.registerShutdownHook();
     }
 }

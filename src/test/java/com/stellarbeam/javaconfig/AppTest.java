@@ -1,4 +1,4 @@
-package com.stellarbeam.selex_javaconfig;
+package com.stellarbeam.javaconfig;
 
 import static org.junit.Assert.assertTrue;
 

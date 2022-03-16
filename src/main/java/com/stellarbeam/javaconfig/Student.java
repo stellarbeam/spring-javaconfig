@@ -16,5 +16,7 @@ public class Student {
 
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.selectAllRows();
+        studentDAO.deleteRow(2);
+        studentDAO.selectAllRows();
     }
 }

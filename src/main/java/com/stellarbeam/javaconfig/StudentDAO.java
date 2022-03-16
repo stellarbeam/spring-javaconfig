@@ -43,7 +43,7 @@ public class StudentDAO {
             Connection connection = getConnection(); 
             Statement statement = connection.createStatement()
         ) {
-            System.out.println("JDBC: Connection established and closed successfully");
+            System.out.println("JDBC: Connection established successfully");
 
             ResultSet resultSet = statement.executeQuery("SELECT * FROM StudentInfo");
 
@@ -59,7 +59,7 @@ public class StudentDAO {
             }
             
         } catch (SQLException e) {
-            System.out.println("JDBC: Error connecting to database");
+            System.out.println("JDBC: Error executing query");
         }
 
         // With the simple `try` statement, we would need the `finally` clause:
@@ -68,5 +68,23 @@ public class StudentDAO {
         //     connection.close();
         // }
     }
+
+    
+    public void deleteRow(int studentId) {
+
+        try (
+            Connection connection = getConnection(); 
+            Statement statement = connection.createStatement()
+        ) {
+            System.out.println("JDBC: Connection established successfully");
+
+            statement.executeUpdate("DELETE FROM StudentInfo WHERE StudentID='" + studentId + "'");
+            
+        } catch (SQLException e) {
+            System.out.println("JDBC: Error executing query");
+        }
+
+    }
+
 
 }

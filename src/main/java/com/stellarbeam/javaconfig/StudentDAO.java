@@ -11,7 +11,12 @@ import javax.annotation.PreDestroy;
 
 import com.mysql.cj.jdbc.Driver;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class StudentDAO {
+
+    static Logger logger = LogManager.getLogger(StudentDAO.class);
 
     // => Deprecated class
     // private String driverClass = "com.mysql.jdbc.Driver";
@@ -34,7 +39,7 @@ public class StudentDAO {
     // constructed and dependencies are injected
     @PostConstruct
     public void init() throws SQLException {
-        System.out.println("PostContruct method called");
+        logger.debug( "PostContruct method called");
         createConnection();
     }
 
@@ -42,7 +47,7 @@ public class StudentDAO {
     // destroyed
     @PreDestroy
     public void destroy() throws SQLException {
-        System.out.println("PreDestroy method called");
+        logger.debug( "PreDestroy method called");
         closeConnection();
     }
 
@@ -73,7 +78,7 @@ public class StudentDAO {
         try (
             Statement statement = connection.createStatement()
         ) {
-            System.out.println("JDBC: Connection established successfully");
+            logger.debug( "JDBC: Connection established successfully");
 
             ResultSet resultSet = statement.executeQuery("SELECT * FROM StudentInfo");
 
@@ -84,12 +89,12 @@ public class StudentDAO {
                 String address = resultSet.getString(4);
                 String city = resultSet.getString(5);
 
-                System.out.println("StudentID: " + studentId + " | LastName: " + lastName + 
+                logger.debug( "StudentID: " + studentId + " | LastName: " + lastName + 
                     " | FirstName: " + firstName + " | Address: " + address + " | City: " + city);
             }
             
         } catch (SQLException e) {
-            System.out.println("JDBC: Error executing query");
+            logger.debug( "JDBC: Error executing query");
         }
 
         // With the simple `try` statement, we would need the `finally` clause:
@@ -105,12 +110,12 @@ public class StudentDAO {
         try (
             Statement statement = connection.createStatement()
         ) {
-            System.out.println("JDBC: Connection established successfully");
+            logger.debug( "JDBC: Connection established successfully");
 
             statement.executeUpdate("DELETE FROM StudentInfo WHERE StudentID='" + studentId + "'");
             
         } catch (SQLException e) {
-            System.out.println("JDBC: Error executing query");
+            logger.debug( "JDBC: Error executing query");
         }
 
     }

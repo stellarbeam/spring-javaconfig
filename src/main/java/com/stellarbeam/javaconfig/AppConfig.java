@@ -1,10 +1,14 @@
 package com.stellarbeam.javaconfig;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class AppConfig {
+
+    static Logger logger = LogManager.getLogger(AppConfig.class);
 
     // If the @Bean annonation is present for this method, the bookBean() 
     // method gets called first, and then studentBean(). However, if absent, 
@@ -12,7 +16,7 @@ public class AppConfig {
     // are called exactly once each. [Unless explicitly called again]
     @Bean
     public Book bookBean() {
-        System.out.println(this.getClass().getSimpleName() + ": bookBean() called");
+        logger.debug( this.getClass().getSimpleName() + ": bookBean() called");
         return new Book();
     }
     
@@ -25,7 +29,7 @@ public class AppConfig {
     public Student studentBean() {
 
         // Gets called only once
-        System.out.println(this.getClass().getSimpleName() + ": studentBean() called");
+        logger.debug( this.getClass().getSimpleName() + ": studentBean() called");
 
         // Even if the object returned by bookBean() is stored in temporary
         // reference variable first, the method is still called only once. 
@@ -34,13 +38,14 @@ public class AppConfig {
 
     @Bean(name = "studentDAO")
     public StudentDAO studentDAOBean() {
+        // Can be obtained from .properties file
         String url = "jdbc:mysql://127.0.0.1:3306/students";
         String user = "test";
         String password = "test";
 
         // Since the bean scope is singleton, this object is same as that
         // injected into student bean
-        System.out.println(bookBean());
+        logger.debug( bookBean());
 
         return new StudentDAO(url, user, password);
     }

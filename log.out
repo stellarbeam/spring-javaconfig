@@ -1,0 +1,35 @@
+Book bean is: com.stellarbeam.javaconfig.Book@77888435
+JDBC: Connection established successfully
+PostContruct method called
+Book bean is: com.stellarbeam.javaconfig.Book@77888435
+JDBC: Connection established successfully
+StudentID: 1 | LastName: Patekar | FirstName: Kashinath | Address: H.No.50, Oshalbag | City: Pernem
+JDBC: Connection established successfully
+JDBC: Connection established successfully
+StudentID: 1 | LastName: Patekar | FirstName: Kashinath | Address: H.No.50, Oshalbag | City: Pernem
+PreDestroy method called
+AppConfig$$EnhancerBySpringCGLIB$$7d504ebc: bookBean() called
+AppConfig$$EnhancerBySpringCGLIB$$7d504ebc: studentBean() called
+com.stellarbeam.javaconfig.Book@77888435
+PostContruct method called
+Application context loaded
+Book bean is: com.stellarbeam.javaconfig.Book@77888435
+JDBC: Connection established successfully
+StudentID: 1 | LastName: Patekar | FirstName: Kashinath | Address: H.No.50, Oshalbag | City: Pernem
+JDBC: Connection established successfully
+JDBC: Connection established successfully
+StudentID: 1 | LastName: Patekar | FirstName: Kashinath | Address: H.No.50, Oshalbag | City: Pernem
+PreDestroy method called
+AppConfig$$EnhancerBySpringCGLIB$$7d504ebc: bookBean() called
+AppConfig$$EnhancerBySpringCGLIB$$7d504ebc: studentBean() called
+com.stellarbeam.javaconfig.Book@77888435
+PostContruct method called
+Application context loaded
+Student: I have a book com.stellarbeam.javaconfig.Book@77888435
+Book bean is: com.stellarbeam.javaconfig.Book@77888435
+JDBC: Connection established successfully
+StudentID: 1 | LastName: Patekar | FirstName: Kashinath | Address: H.No.50, Oshalbag | City: Pernem
+JDBC: Connection established successfully
+JDBC: Connection established successfully
+StudentID: 1 | LastName: Patekar | FirstName: Kashinath | Address: H.No.50, Oshalbag | City: Pernem
+PreDestroy method called

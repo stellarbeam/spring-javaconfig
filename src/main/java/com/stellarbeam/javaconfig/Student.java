@@ -1,6 +1,11 @@
 package com.stellarbeam.javaconfig;
 
+import org.apache.log4j.LogManager;
+import org.apache.log4j.Logger;
+
 public class Student {
+
+    static Logger logger = LogManager.getLogger(Student.class);
 
     private Book book;
     
@@ -11,7 +16,7 @@ public class Student {
     }
 
     public void test() {
-        System.out.println("Student: I have a book " + book);
+        logger.debug("Student: I have a book " + book);
 
         // Moving this code to main method of App for the time being
         // StudentDAO studentDAO = new StudentDAO();

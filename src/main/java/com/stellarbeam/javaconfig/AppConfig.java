@@ -1,5 +1,9 @@
 package com.stellarbeam.javaconfig;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Properties;
+
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.context.annotation.Bean;
@@ -37,11 +41,15 @@ public class AppConfig {
     }
 
     @Bean(name = "studentDAO")
-    public StudentDAO studentDAOBean() {
-        // Can be obtained from .properties file
-        String url = "jdbc:mysql://127.0.0.1:3306/students";
-        String user = "test";
-        String password = "test";
+    public StudentDAO studentDAOBean() throws IOException {
+
+        Properties props = new Properties();
+        InputStream inStream = this.getClass().getClassLoader().getResourceAsStream("student.properties");
+        props.load(inStream);
+
+        String url = props.getProperty("jdbc.url");
+        String user = props.getProperty("jdbc.user");
+        String password = props.getProperty("jdbc.password");
 
         // Since the bean scope is singleton, this object is same as that
         // injected into student bean
